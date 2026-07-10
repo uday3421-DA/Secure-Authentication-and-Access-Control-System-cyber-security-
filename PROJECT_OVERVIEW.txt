@@ -1,0 +1,112 @@
+================================================================
+       AUTHENTICATION & AUTHORIZATION SYSTEM
+       A Cyber Security Project
+================================================================
+
+WHAT IS THIS PROJECT?
+---------------------
+This is a full-stack web application that demonstrates a secure
+institutional authentication and authorization system. It simulates
+how real-world organizations (like universities or colleges) manage
+user login, access control, and system security.
+
+The project focuses on implementing core cyber security principles
+in a practical, working application.
+
+
+WHO IS IT FOR?
+--------------
+This project is designed for institutions with three types of users:
+
+  1. Admin    - Full control over the system (manage users, view logs)
+  2. Faculty  - Intermediate access level
+  3. Student  - Basic access level
+
+
+WHAT DOES IT DO?
+----------------
+The system provides the following security features:
+
+  [1] USER REGISTRATION
+      - Users sign up with a username, email, password, and role.
+      - Passwords must meet a strict security policy:
+          * Minimum 8 characters
+          * At least 1 uppercase letter
+          * At least 1 lowercase letter
+          * At least 1 number
+          * At least 1 special character (e.g. @, !, #)
+
+  [2] SECURE LOGIN WITH CAPTCHA
+      - Users must pass a CAPTCHA check before logging in.
+      - This prevents automated bot attacks.
+
+  [3] ACCOUNT LOCKOUT
+      - If a user enters the wrong password 5 times in a row,
+        their account is automatically LOCKED.
+      - Only an Admin can unlock the account from the Admin Panel.
+
+  [4] MULTI-FACTOR AUTHENTICATION (MFA)
+      - After a correct password, the system generates a 6-digit OTP.
+      - The OTP is printed in the backend console (simulating an email/SMS).
+      - The user must enter the OTP to complete login.
+      - This adds a second layer of verification beyond just a password.
+
+  [5] JWT SESSION MANAGEMENT
+      - Once fully logged in, the user receives a secure JSON Web Token.
+      - This token expires after 1 hour, requiring re-login.
+      - All protected routes require this token.
+
+  [6] ROLE-BASED ACCESS CONTROL (RBAC)
+      - Different pages and features are restricted by user role.
+      - Admin can access everything including the Admin Control Center.
+      - Faculty and Students see only their own dashboard.
+
+  [7] ADMIN CONTROL CENTER
+      - View all registered users and their statuses.
+      - Change a user's role (Student → Faculty → Admin).
+      - Unlock locked accounts with a single click.
+      - View real-time system activity chart.
+
+  [8] AUDIT LOGS
+      - Every important action is recorded in the database:
+          * LOGIN_SUCCESS
+          * LOGIN_FAILED
+          * MFA_VERIFIED
+          * ROLE_UPDATE
+          * ACCOUNT_UNLOCKED
+      - Admins can view the full log history in the dashboard.
+
+
+TECH STACK USED
+---------------
+  Frontend  : React, Vite, Tailwind CSS, Framer Motion, Recharts
+  Backend   : Node.js, Express.js
+  Database  : MySQL (via Sequelize ORM)
+  Security  : JWT, bcryptjs, Helmet, Express Rate Limiter
+
+
+HOW TO RUN IT
+-------------
+  1. Create a MySQL database named:  auth_db
+  2. Configure backend/.env with your DB credentials and JWT secret
+  3. Run backend:   cd backend   -->  npm run dev   (runs on port 5000)
+  4. Run frontend:  cd frontend  -->  npm run dev   (runs on port 3000)
+  5. Open browser:  http://localhost:3000
+
+
+CYBER SECURITY CONCEPTS DEMONSTRATED
+--------------------------------------
+  - Password Hashing (bcrypt with salt rounds)
+  - Brute Force Protection (account lockout after 5 failed attempts)
+  - Bot Prevention (CAPTCHA verification)
+  - Token-Based Authentication (JWT)
+  - Multi-Factor Authentication (OTP simulation)
+  - Role-Based Access Control (RBAC)
+  - Security Headers (Helmet middleware)
+  - Rate Limiting (prevents API abuse)
+  - Audit Logging (non-repudiation)
+  - Account Management (Admin unlock feature)
+
+================================================================
+                     END OF OVERVIEW
+================================================================
